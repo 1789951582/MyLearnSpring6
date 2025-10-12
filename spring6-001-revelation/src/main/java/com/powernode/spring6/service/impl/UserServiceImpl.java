@@ -10,7 +10,10 @@ public class UserServiceImpl implements UserService {
 //    UserDao userDao = new UserDaoImplForMySQL();
 
     //修改为
-    private UserDao userDao = new UserDaoImplForOracle();
+//    private UserDao userDao = new UserDaoImplForOracle();
+
+    //修改为
+    private UserDao userDao;
 
     @Override
     public void deleteUser() {

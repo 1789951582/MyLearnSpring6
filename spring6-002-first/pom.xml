@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.powernode</groupId>
+    <artifactId>spring6-002-first</artifactId>
+    <version>1.0-SNAPSHOT</version>
+<!--    打包方式jar，学习spring，项目可以不是web项目，普通java项目即可-->
+    <packaging>jar</packaging>
+
+<!--    依赖-->
+    <dependencies>
+<!--        spring context依赖-->
+<!--        当你引入Spring Context依赖之后，表示将Spring的基础依赖引入了-->
+<!--        如果，你想使用spring的jdbc，或者说其他的tx，那么还需要再次添加依赖-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.2.6</version>
+        </dependency>
+
+<!--        junit依赖-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+        </dependency>
+    </dependencies>
+
+</project>
