@@ -15,6 +15,7 @@
             class：：必须填写类的全路径，全限定类名（带包名的类名）
     -->
     <bean id="userBean" class="com.powernode.spring6.bean.User" />
+<!--    <bean id="userBean" class="com.powernode.spring6.bean.Vip" />-->
 
 <!--    配置其他的bean-->
     <bean id="userDaoBean" class="com.powernode.spring6.dao.UserDaoImplforMySQL"/>

@@ -13,7 +13,9 @@ public class FirstSpringTest {
         //ApplicationContext接口下有很多实现类。其中有一个实现类ClassPathXmlApplicationContext
         //ClassPathXmlApplicationContext 专门从类路径当中加载spring配置文件的一个Spring上下文对象
         //这行代码只要执行：就相当于启动了Spring容器，解析spring.xml文件,并且实例化所有的bean对象，放到spring容器中
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring6.xml");
+//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring6.xml","beans.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring6.xml","beans.xml","xml/beans.xml");
 
         //第二步：根据bean的id从Spring容器中获取这个对象
         Object userBean = applicationContext.getBean("userBean");
@@ -22,5 +24,10 @@ public class FirstSpringTest {
         Object userDaoBean = applicationContext.getBean("userDaoBean");
         System.out.println(userDaoBean);
 
+        Object vipBean = applicationContext.getBean("vipBean");
+        System.out.println(vipBean);
+
+        Object userBean2 = applicationContext.getBean("userBean2");
+        System.out.println(userBean2);
     }
 }
