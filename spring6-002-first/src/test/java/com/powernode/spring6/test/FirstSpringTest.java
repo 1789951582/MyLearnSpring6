@@ -1,10 +1,45 @@
 package com.powernode.spring6.test;
 
+import com.powernode.spring6.bean.User;
+import com.powernode.spring6.dao.UserDaoImplforMySQL;
 import org.junit.Test;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FirstSpringTest {
+
+    @Test
+    public void testBeginInitBean(){
+        //注意：不是在调用getBean()方法的时候创建对象，执行以下代码的时候，就会实例化对象
+        new ClassPathXmlApplicationContext("spring6.xml");
+    }
+
+    @Test
+    public void testBeanFactory(){
+        //ApplicationContext接口的超级父接口是：BeanFactory（翻译为Bean工厂，就是能够生产Bean对象的一个工厂对象。）
+        //BeanFactory是IoC容器的顶级接口
+        //Spring的IoC容器底层实际上使用了：工厂模式。
+        //Spring底层的IoC是怎么实现的？XML解析 + 工厂模式 + 反射机制
+//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring6.xml");
+        BeanFactory applicationContext = new ClassPathXmlApplicationContext("spring6.xml");
+        User userBean = applicationContext.getBean("UserBean", User.class);
+        System.out.println(userBean);
+    }
+
+    @Test
+    public void testXmlPath(){
+//        FileSystemXmlApplicationContext 不是从类路径当中加载资源
+//        这种方式很少用，了解即可
+        FileSystemXmlApplicationContext fileSystemXmlApplicationContext = new FileSystemXmlApplicationContext("d:/spring6.xml");
+        User userBean = fileSystemXmlApplicationContext.getBean("userBean", User.class);
+        System.out.println(userBean);
+    }
+
     @Test
     public void testFirstSpringCode(){
         //第一步：获取Spring容器对象
@@ -21,7 +56,8 @@ public class FirstSpringTest {
         Object userBean = applicationContext.getBean("userBean");
         System.out.println(userBean);
 
-        Object userDaoBean = applicationContext.getBean("userDaoBean");
+//        Object userDaoBean = applicationContext.getBean("userDaoBean");
+        UserDaoImplforMySQL userDaoBean = applicationContext.getBean("userDaoBean", UserDaoImplforMySQL.class);
         System.out.println(userDaoBean);
 
         Object vipBean = applicationContext.getBean("vipBean");
@@ -29,5 +65,18 @@ public class FirstSpringTest {
 
         Object userBean2 = applicationContext.getBean("userBean2");
         System.out.println(userBean2);
+
+//        如果bean的id不存在，不会返回null，而是出现异常。
+//        Object nowTime = applicationContext.getBean("nowTime");
+//        Date nowTime = (Date) applicationContext.getBean("nowTime");
+//        不想强制类型转换，可以使用以下代码
+//        System.out.println(nowTime);
+        Date nowTime = applicationContext.getBean("nowTime", Date.class);
+        //日期格式化
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+        String strNowTime = simpleDateFormat.format(nowTime);
+        System.out.println(strNowTime);
+
     }
+    
 }
