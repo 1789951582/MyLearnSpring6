@@ -1,12 +1,23 @@
 package com.powernode.spring6.test;
 
 import com.powernode.spring6.service.CustomerService;
+import com.powernode.spring6.service.OrderService;
 import com.powernode.spring6.service.UserService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringDITest {
+
+    @Test
+    public void testSetDI2(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("set_di.xml");
+        OrderService orderServiceBean = applicationContext.getBean("orderServiceBean", OrderService.class);
+        orderServiceBean.generate();
+
+        OrderService orderDaoBean2 = applicationContext.getBean("orderDaoBean2", OrderService.class);
+        orderDaoBean2.generate();
+    }
 
     @Test
     public void testConstructorDI(){
