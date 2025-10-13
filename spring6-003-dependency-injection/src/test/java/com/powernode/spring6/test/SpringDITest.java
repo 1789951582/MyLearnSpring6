@@ -1,5 +1,6 @@
 package com.powernode.spring6.test;
 
+import com.powernode.spring6.bean.User;
 import com.powernode.spring6.service.CustomerService;
 import com.powernode.spring6.service.OrderService;
 import com.powernode.spring6.service.UserService;
@@ -8,6 +9,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringDITest {
+
+    @Test
+    public void testSimpleTypeSet(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("set_di.xml");
+        User userBean = applicationContext.getBean("userBean", User.class);
+        System.out.println(userBean);
+    }
 
     @Test
     public void testSetDI2(){

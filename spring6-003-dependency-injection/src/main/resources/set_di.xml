@@ -3,6 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+<!--    注入简单类型-->
+    <bean id="userBean" class="com.powernode.spring6.bean.User">
+<!--        重点：如果是给简单类型赋值，就不能使用ref了。就需要使用value了。-->
+        <property name="username" value="张三"/>
+        <property name="password" value="123" />
+        <property name="age" value="20" />
+    </bean>
 
 <!--    声明定义Bean-->
     <bean id="orderDaoBean" class="com.powernode.spring6.dao.OrderDao"/>
