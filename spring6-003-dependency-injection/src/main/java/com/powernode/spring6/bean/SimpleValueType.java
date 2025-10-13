@@ -1,5 +1,16 @@
 package com.powernode.spring6.bean;
 
+import java.io.File;
+import java.net.InetAddress;
+import java.net.URI;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.Path;
+import java.time.ZoneId;
+import java.time.temporal.Temporal;
+import java.util.*;
+import java.util.regex.Pattern;
+
 /**
  * 测试简单类型
  */
@@ -20,6 +31,8 @@ public class SimpleValueType {
 
     private Class clazz;
 
+    private Date birth;
+
     @Override
     public String toString() {
         return "SimpleValueType{" +
@@ -32,7 +45,12 @@ public class SimpleValueType {
                 ", season=" + season +
                 ", username='" + username + '\'' +
                 ", clazz=" + clazz +
+                ", birth=" + birth +
                 '}';
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
 
     public void setAge(int age) {

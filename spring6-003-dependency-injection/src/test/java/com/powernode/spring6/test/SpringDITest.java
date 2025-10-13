@@ -9,7 +9,13 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Date;
+
 public class SpringDITest {
+
+    public static void main(String[] args){
+        System.out.println(new Date());
+    }
 
     @Test
     public void testSimpleTypeSet(){
