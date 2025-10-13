@@ -2,6 +2,7 @@ package com.powernode.spring6.test;
 
 import com.powernode.spring6.bean.SimpleValueType;
 import com.powernode.spring6.bean.User;
+import com.powernode.spring6.jdbc.MyDateSource;
 import com.powernode.spring6.service.CustomerService;
 import com.powernode.spring6.service.OrderService;
 import com.powernode.spring6.service.UserService;
@@ -15,6 +16,13 @@ public class SpringDITest {
 
     public static void main(String[] args){
         System.out.println(new Date());
+    }
+
+    @Test
+    public void testMyDataSource(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("set_di.xml");
+        MyDateSource myDataSource = applicationContext.getBean("myDataSource", MyDateSource.class);
+        System.out.println(myDataSource);
     }
 
     @Test

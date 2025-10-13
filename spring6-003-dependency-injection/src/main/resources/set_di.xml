@@ -3,6 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+<!--    让spring来管理我们的数据源-->
+    <bean id="myDataSource" class="com.powernode.spring6.jdbc.MyDateSource">
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring6"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
 <!--    测试哪些类型是简单类型-->
     <bean id="svt" class="com.powernode.spring6.bean.SimpleValueType">
         <property name="age" value="20"/>
