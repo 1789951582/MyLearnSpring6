@@ -26,5 +26,27 @@
                 <value>北京海淀区</value>
             </set>
         </property>
+
+<!--        注入Map集合-->
+        <property name="phones">
+            <map>
+<!--                如果key和value不是简单类型就用这个配置-->
+<!--                    <entry key-ref="" value-ref=""/>-->
+<!--                如果类型是简单类型就是key和value-->
+                <entry key="1" value="110"/>
+                <entry key="2" value="120"/>
+                <entry key="3" value="119"/>
+            </map>
+        </property>
+
+        <property name="properties">
+<!--            注入Properties属性类对象-->
+            <props>
+                <prop key="driver">com.mysql.cj.jdbc.Driver</prop>
+                <prop key="url">jdbc:mysql://localhost:3306/spring6</prop>
+                <prop key="username">root</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
     </bean>
 </beans>
