@@ -3,6 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+<!--    使用级联属性赋值需要注意两点：-->
+<!--        1.配置的顺序不能颠倒，必须如下顺序-->
+<!--        2.clazz属性必须提供get方法-->
     <bean id="studentBean" class="com.powernode.spring6.bean.Student">
 <!--        简单类型使用value-->
         <property name="name" value="张三"/>

@@ -1,9 +1,6 @@
 package com.powernode.spring6.test;
 
-import com.powernode.spring6.bean.Clazz;
-import com.powernode.spring6.bean.SimpleValueType;
-import com.powernode.spring6.bean.Student;
-import com.powernode.spring6.bean.User;
+import com.powernode.spring6.bean.*;
 import com.powernode.spring6.jdbc.MyDateSource;
 import com.powernode.spring6.service.CustomerService;
 import com.powernode.spring6.service.OrderService;
@@ -19,6 +16,13 @@ public class SpringDITest {
 
     public static void main(String[] args){
         System.out.println(new Date());
+    }
+
+    @Test
+    public void testArray(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-array.xml");
+        QianDaYe yuQian = applicationContext.getBean("yuQian", QianDaYe.class);
+        System.out.println(yuQian);
     }
 
     @Test
