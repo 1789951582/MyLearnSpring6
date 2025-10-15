@@ -3,6 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+<!--    让spring来管理我们的数据源-->
+    <bean id="myDataSource" class="com.powernode.spring6.jdbc.MyDateSource">
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring6"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
 <!--    测试哪些类型是简单类型-->
     <bean id="svt" class="com.powernode.spring6.bean.SimpleValueType">
         <property name="age" value="20"/>
@@ -17,6 +25,8 @@
 <!--        报错了，1970-10-11这个字符串无法转换成java.util.Date类型无法转换成java.util.Date类型-->
 <!--        <property name="birth" value="1970-10-11"/>-->
 <!--        如果你硬要把Date当作简单类型的话，使用value赋值的话，这个日期字符串格式有要求-->
+<!--        在实际开发中，我们不会把Date当作简单类型，虽然它是简单类型。一般会采用ref给Date类型的属性赋值-->
+        <property name="birth" value="Mon Oct 13 22:58:20 CST 2025"/>
     </bean>
 
 <!--    注入简单类型-->

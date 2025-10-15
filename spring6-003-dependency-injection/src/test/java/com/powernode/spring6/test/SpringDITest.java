@@ -1,6 +1,8 @@
 package com.powernode.spring6.test;
 
+import com.powernode.spring6.bean.Clazz;
 import com.powernode.spring6.bean.SimpleValueType;
+import com.powernode.spring6.bean.Student;
 import com.powernode.spring6.bean.User;
 import com.powernode.spring6.jdbc.MyDateSource;
 import com.powernode.spring6.service.CustomerService;
@@ -10,12 +12,22 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.swing.plaf.PanelUI;
 import java.util.Date;
 
 public class SpringDITest {
 
     public static void main(String[] args){
         System.out.println(new Date());
+    }
+
+    @Test
+    public void testCascade(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("cascade.xml");
+        Student studentBean = applicationContext.getBean("studentBean", Student.class);
+        System.out.println(studentBean);
+        Clazz clazzBean = applicationContext.getBean("clazzBean", Clazz.class);
+        System.out.println(clazzBean);
     }
 
     @Test
