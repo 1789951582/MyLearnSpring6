@@ -19,6 +19,13 @@ public class SpringDITest {
     }
 
     @Test
+    public void testNull(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("set_di.xml");
+        Cat catBean = applicationContext.getBean("catBean", Cat.class);
+        System.out.println(catBean.getName().toUpperCase());
+    }
+
+    @Test
     public void testCollection(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-collection.xml");
         Person personBean = applicationContext.getBean("personBean", Person.class);

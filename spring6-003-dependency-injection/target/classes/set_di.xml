@@ -3,6 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="catBean" class="com.powernode.spring6.bean.Cat">
+<!--        <property name="name" value="Tom"></property>-->
+        <property name="age" value="3"></property>
+    </bean>
 <!--    让spring来管理我们的数据源-->
     <bean id="myDataSource" class="com.powernode.spring6.jdbc.MyDateSource">
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
