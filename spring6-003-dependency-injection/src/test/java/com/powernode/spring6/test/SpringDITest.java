@@ -19,6 +19,13 @@ public class SpringDITest {
     }
 
     @Test
+    public void testSpecial(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("set_di.xml");
+        MathBean mathBean = applicationContext.getBean("mathBean", MathBean.class);
+        System.out.println(mathBean);
+    }
+
+    @Test
     public void testNull(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("set_di.xml");
         Cat catBean = applicationContext.getBean("catBean", Cat.class);
