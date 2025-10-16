@@ -21,6 +21,13 @@ public class SpringDITest {
     }
 
     @Test
+    public void testAutowire(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring_autowire.xml");
+        OrderService orderService = applicationContext.getBean("orderService", OrderService.class);
+        orderService.generate();
+    }
+
+    @Test
     public void testUtil(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring_util.xml");
         MyDataSource1 ds1 = applicationContext.getBean("ds1", MyDataSource1.class);
