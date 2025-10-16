@@ -1,6 +1,8 @@
 package com.powernode.spring6.test;
 
 import com.powernode.spring6.bean.*;
+import com.powernode.spring6.jdbc.MyDataSource1;
+import com.powernode.spring6.jdbc.MyDataSource2;
 import com.powernode.spring6.jdbc.MyDateSource;
 import com.powernode.spring6.service.CustomerService;
 import com.powernode.spring6.service.OrderService;
@@ -16,6 +18,15 @@ public class SpringDITest {
 
     public static void main(String[] args){
         System.out.println(new Date());
+    }
+
+    @Test
+    public void testUtil(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring_util.xml");
+        MyDataSource1 ds1 = applicationContext.getBean("ds1", MyDataSource1.class);
+        MyDataSource2 ds2 = applicationContext.getBean("ds2", MyDataSource2.class);
+        System.out.println(ds1);
+        System.out.println(ds2);
     }
 
     @Test
