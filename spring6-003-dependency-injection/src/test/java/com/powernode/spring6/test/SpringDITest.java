@@ -19,6 +19,13 @@ public class SpringDITest {
     }
 
     @Test
+    public void testC(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring_c.xml");
+        People peopleBean = applicationContext.getBean("peopleBean", People.class);
+        System.out.println(peopleBean);
+    }
+
+    @Test
     public void testP(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring_p.xml");
         Dog dogBean = applicationContext.getBean("dogBean", Dog.class);
