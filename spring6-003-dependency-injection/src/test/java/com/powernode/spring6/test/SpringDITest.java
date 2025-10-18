@@ -23,8 +23,11 @@ public class SpringDITest {
     @Test
     public void testAutowire(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring_autowire.xml");
-        OrderService orderService = applicationContext.getBean("orderService", OrderService.class);
-        orderService.generate();
+//        OrderService orderService = applicationContext.getBean("orderService", OrderService.class);
+//        orderService.generate();
+
+        CustomerService cs = applicationContext.getBean("cs", CustomerService.class);
+        cs.save();
     }
 
     @Test
