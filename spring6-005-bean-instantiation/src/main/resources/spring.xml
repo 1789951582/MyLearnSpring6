@@ -11,4 +11,10 @@
 <!--    factory-method 属性指定的是工厂类当中的静态方法。也就是告诉Spring框架，调用这个方法可以获取Bean-->
     <bean id="starBean" class="com.powernode.spring6.bean.StarFactory" factory-method="get"></bean>
 
+<!--    Spring提供的实例化方式，第三种：通过工厂模式，通过factory-bean属性 + factory-method属性来共同完成-->
+<!--    告诉Spring框架，调用哪个对象的哪个方法来获取Bean-->
+    <bean id="gunFactory" class="com.powernode.spring6.bean.GunFactory"/>
+<!--    以下的配置很关键，factory-bean属性告诉Spring调用哪个对象。factory-method告诉Spring调用该对象的哪个方法-->
+    <bean id="gunBean" factory-bean="gunFactory" factory-method="get"/>
+
 </beans>

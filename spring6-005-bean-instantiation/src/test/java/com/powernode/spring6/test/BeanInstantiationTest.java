@@ -1,5 +1,6 @@
 package com.powernode.spring6.test;
 
+import com.powernode.spring6.bean.Gun;
 import com.powernode.spring6.bean.SpringBean;
 import com.powernode.spring6.bean.Star;
 import org.junit.Test;
@@ -7,6 +8,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BeanInstantiationTest {
+
+    @Test
+    public void testInstantiation3(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        Gun gun = applicationContext.getBean("gunBean", Gun.class);
+        System.out.println(gun);
+    }
 
     @Test
     public void testInstantiation2(){
