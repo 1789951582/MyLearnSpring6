@@ -2,7 +2,7 @@ package com.powernode.simple.factory;
 
 public class Test {
     public static void main(String[] args) {
-        
+
         //需要坦克
         //对于我来说，坦克的生产细节，我不需要关心，我只需要向工厂索要即可
         //简单工厂模式达到了什么呢？职责分离。客户端不需要关心产品的生产细节
