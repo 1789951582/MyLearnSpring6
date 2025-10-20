@@ -1,5 +1,8 @@
 package com.powernode.spring6.bean;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.*;
+
 /**
  * Bean的生命周期按照粗略的五步的话：
  * 第一步：实例化Bean（调用无参数构造方法）
@@ -8,7 +11,7 @@ package com.powernode.spring6.bean;
  * 第四步：使用Bean
  * 第五步：销毁Bean（会调用Bean的destroy方法。注意：这个destory方法需要自己写。自己配。）
  */
-public class User {
+public class User implements BeanNameAware, BeanClassLoaderAware, BeanFactoryAware, InitializingBean, DisposableBean {
     private String name;
 
     public void setName(String name) {
@@ -22,11 +25,36 @@ public class User {
 
     //这个方法需要自己写，自己配，方法名随意
     public void initBean(){
-        System.out.println("第三步：初始化Bean");
+        System.out.println("第四步：初始化Bean");
     }
 
     //这个方法需要自己写。自己配。方法名随意。
     public void destroyBean(){
-        System.out.println("第五步：销毁Bean");
+        System.out.println("第七步：销毁Bean");
+    }
+
+    @Override
+    public void setBeanClassLoader(ClassLoader classLoader) {
+        System.out.println("Bean这个类的加载器：" + classLoader);
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        System.out.println("生产这个Bean的工厂对象是：" + beanFactory);
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        System.out.println("这个Bean的名字是：" + name);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("InitializingBean's afterPropertiesSet执行。");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("DisposableBean's destroy方法执行");
     }
 }

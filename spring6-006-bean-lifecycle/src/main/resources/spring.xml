@@ -7,7 +7,7 @@
 <!--    注意：这个Bean后处理器将作用于整个配置文件中所有的bean-->
     <bean class="com.powernode.spring6.bean.LogBeanPostProcessor"/>
 
-    <bean id="vip" class="com.powernode.spring6.bean.Vip"/>
+<!--    <bean id="vip" class="com.powernode.spring6.bean.Vip"/>-->
 
 <!--    需要手动指定初始化方法和销毁方法-->
     <bean id="user" class="com.powernode.spring6.bean.User" init-method="initBean" destroy-method="destroyBean">
