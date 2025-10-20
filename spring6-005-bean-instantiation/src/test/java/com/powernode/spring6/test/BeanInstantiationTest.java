@@ -1,14 +1,18 @@
 package com.powernode.spring6.test;
 
-import com.powernode.spring6.bean.Gun;
-import com.powernode.spring6.bean.Person;
-import com.powernode.spring6.bean.SpringBean;
-import com.powernode.spring6.bean.Star;
+import com.powernode.spring6.bean.*;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BeanInstantiationTest {
+
+    @Test
+    public void testDate(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        Student student = applicationContext.getBean("studentBean", Student.class);
+        System.out.println(student);
+    }
 
     @Test
     public void testInstantiation4(){

@@ -3,6 +3,26 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+<!--    通过工厂bean：DateFactoryBean 来返回普通Bean：java.util.Date-->
+    <bean id="date" class="com.powernode.spring6.bean.DateFactoryBean">
+        <constructor-arg index="0" value="1980-10-11"/>
+    </bean>
+
+    <bean id="studentBean" class="com.powernode.spring6.bean.Student">
+        <property name="birth" ref="date"/>
+    </bean>
+
+
+<!--    这种方式只能获取当前系统时间，这种时间不能作为生日-->
+    <bean id="nowTime" class="java.util.Date"/>
+
+    <bean id="student" class="com.powernode.spring6.bean.Student">
+<!--        把日期当作简单类型-->
+<!--        <property name="birth" value="Mon Oct 10 14:30:26 CST 2022"/>-->
+<!--        把日期当作非简单类型-->
+        <property name="birth" ref="nowTime"/>
+    </bean>
+
 <!--    Spring提供的实例化方式，第一种：在spring配置文件种直接配置类全路径，Sping会自动调用该类的无参数构造方法来实例化bean-->
     <bean id="sb" class="com.powernode.spring6.bean.SpringBean"/>
 
