@@ -9,6 +9,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class CircularDependencyTest {
 
     @Test
+    public void testCD2(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring2.xml");
+        Husband husbandBean = applicationContext.getBean("h", Husband.class);
+        System.out.println(husbandBean);
+        Wife wifeBean = applicationContext.getBean("w", Wife.class);
+        System.out.println(wifeBean);
+    }
+
+    @Test
     public void testCD(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         Husband husbandBean = applicationContext.getBean("husbandBean", Husband.class);
