@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +62,41 @@ public class ClassPathXmlApplicationContext implements ApplicationContext {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+            });
+
+            //再次重新把所有的bean的标签遍历一次，这一次主要是给对象的属性赋值。
+            nodes.forEach(node -> {
+                try {
+                    Element beanElt = (Element) node;
+                    // 获取id
+                    String className = beanElt.attributeValue("class");
+                    // 获取Class
+                    Class<?> aClass = Class.forName(className);
+                    //获取该bean标签下所有的属性property标签
+                    List<Element> propertys = beanElt.elements("property");
+                    //遍历所有的属性标签
+                    propertys.forEach(property ->{
+                        try {
+                            //获取属性名
+                            String propertyName = property.attributeValue("name");
+                            //获取属性类型
+                            Field field = aClass.getField(propertyName);
+                            logger.info("属性名：" + propertyName);
+                            //获取set方法名
+                            String setMethodName = "set" + propertyName.toUpperCase().charAt(0) + propertyName.substring(1);
+                            //获取set方法
+                            Method setMethod = aClass.getDeclaredMethod(setMethodName, field.getType());
+                            //调用set方法
+                            
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                    });
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             });
         }catch (Exception e){
             e.printStackTrace();
