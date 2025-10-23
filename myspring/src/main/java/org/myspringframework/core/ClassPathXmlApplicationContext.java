@@ -69,6 +69,8 @@ public class ClassPathXmlApplicationContext implements ApplicationContext {
                 try {
                     Element beanElt = (Element) node;
                     // 获取id
+                    String id = beanElt.attributeValue("id");
+                    // 获取className
                     String className = beanElt.attributeValue("class");
                     // 获取Class
                     Class<?> aClass = Class.forName(className);
@@ -86,8 +88,19 @@ public class ClassPathXmlApplicationContext implements ApplicationContext {
                             String setMethodName = "set" + propertyName.toUpperCase().charAt(0) + propertyName.substring(1);
                             //获取set方法
                             Method setMethod = aClass.getDeclaredMethod(setMethodName, field.getType());
-                            //调用set方法
-                            
+                            //获取具体的值
+                            String value = property.attributeValue("value");
+                            String ref = property.attributeValue("ref");
+                            if (value != null){
+                                //说明这个值是简单类型
+                                //调用set方法（set方法没有返回值）
+                                setMethod.invoke(singletonObjects.get(id),);
+                            }
+                            if (ref != null){
+                                //说明这个值是非简单类型
+                                setMethod.invoke(singletonObjects.get(id),singletonObjects.get(ref));
+                            }
+
                         }catch (Exception e){
                             e.printStackTrace();
                         }
