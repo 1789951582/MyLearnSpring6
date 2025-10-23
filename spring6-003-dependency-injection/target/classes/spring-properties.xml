@@ -13,6 +13,8 @@
 <!--    配置数据源-->
     <bean id="ds" class="com.powernode.spring6.jdbc.MyDateSource">
 <!--        怎取值呢，第三步：${key}-->
+<!--        使用这种方法会优先读取系统变量的值，如果你在xml写了与系统变量相同的值会被覆盖-->
+<!--        建议使用xxx. 作区分-->
         <property name="driver" value="${jdbc.driverClass}"></property>
         <property name="url" value="${jdbc.url}"></property>
         <property name="username" value="${jdbc.username}"></property>
