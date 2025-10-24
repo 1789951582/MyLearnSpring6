@@ -90,11 +90,70 @@ public class ClassPathXmlApplicationContext implements ApplicationContext {
                             Method setMethod = aClass.getDeclaredMethod(setMethodName, field.getType());
                             //获取具体的值
                             String value = property.attributeValue("value");
+                            Object actualValue = null;
                             String ref = property.attributeValue("ref");
                             if (value != null){
                                 //说明这个值是简单类型
                                 //调用set方法（set方法没有返回值）
-                                setMethod.invoke(singletonObjects.get(id),);
+                                // 我们myspring框架声明一下：我们只支持这些类型为简单类型
+                                // byte short int long float double boolean char
+                                // Byte Integer Long Double Boolean Character
+                                // String
+                                // 获取属性类型名
+                                String propertyTypeSimpleName = field.getType().getSimpleName();
+                                switch (propertyTypeSimpleName){
+                                    case "byte":
+                                        actualValue = Byte.parseByte(value);
+                                        break;
+                                    case  "short":
+                                        actualValue = Short.parseShort(value);
+                                        break;
+                                    case  "int":
+                                        actualValue = Integer.parseInt(value);
+                                        break;
+                                    case  "long":
+                                        actualValue = Long.parseLong(value);
+                                        break;
+                                    case  "float":
+                                        actualValue = Float.parseFloat(value);
+                                        break;
+                                    case  "double":
+                                        actualValue = Double.parseDouble(value);
+                                        break;
+                                    case  "boolean":
+                                        actualValue = Boolean.parseBoolean(value);
+                                        break;
+                                    case  "char":
+                                        actualValue = value.charAt(0);
+                                        break;
+                                    case  "Byte":
+                                        actualValue = Byte.valueOf(value);
+                                        break;
+                                    case  "Short":
+                                        actualValue = Short.valueOf(value);
+                                        break;
+                                    case  "Integer":
+                                        actualValue = Integer.valueOf(value);
+                                        break;
+                                    case  "Long":
+                                        actualValue = Long.valueOf(value);
+                                        break;
+                                    case  "Float":
+                                        actualValue = Float.valueOf(value);
+                                        break;
+                                    case  "Double":
+                                        actualValue = Double.valueOf(value);
+                                        break;
+                                    case  "Boolean":
+                                        actualValue = Boolean.valueOf(value);
+                                        break;
+                                    case  "Character":
+                                        actualValue = Character.valueOf(value.charAt(0));
+                                        break;
+                                    case  "String":
+                                        actualValue = value;
+                                }
+                                setMethod.invoke(singletonObjects.get(id),actualValue);
                             }
                             if (ref != null){
                                 //说明这个值是非简单类型
