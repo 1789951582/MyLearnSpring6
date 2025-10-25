@@ -82,7 +82,7 @@ public class ClassPathXmlApplicationContext implements ApplicationContext {
                             //获取属性名
                             String propertyName = property.attributeValue("name");
                             //获取属性类型
-                            Field field = aClass.getField(propertyName);
+                            Field field = aClass.getDeclaredField(propertyName);
                             logger.info("属性名：" + propertyName);
                             //获取set方法名
                             String setMethodName = "set" + propertyName.toUpperCase().charAt(0) + propertyName.substring(1);
@@ -173,12 +173,10 @@ public class ClassPathXmlApplicationContext implements ApplicationContext {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
 
     @Override
     public Object getBean(String beanName) {
-        return singletonObjects.get(singletonObjects);
+        return singletonObjects.get(beanName);
     }
 }
