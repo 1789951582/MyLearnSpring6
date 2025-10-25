@@ -40,7 +40,7 @@ public @interface Component {
     //int age();
 }
 
-@Component
+@Component("aaa")
 class User{
 
 }
