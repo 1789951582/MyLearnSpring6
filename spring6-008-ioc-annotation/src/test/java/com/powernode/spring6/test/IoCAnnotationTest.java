@@ -9,6 +9,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class IoCAnnotationTest {
 
     @Test
+    public void testChoose(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-choose.xml");
+//        applicationContext.getBean()
+    }
+
+    @Test
     public void testBeanComponent(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         User userBean = applicationContext.getBean("userBean", User.class);
