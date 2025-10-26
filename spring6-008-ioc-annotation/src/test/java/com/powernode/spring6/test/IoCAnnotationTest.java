@@ -11,6 +11,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class IoCAnnotationTest {
 
     @Test
+    public void testAutowired(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-autowired.xml");
+        org.powernode.service.OrderService orderService = applicationContext.getBean("orderService", org.powernode.service.OrderService.class);
+        orderService.generate();
+    }
+
+    @Test
     public void testDIByAnnotation(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-di-annotation.xml");
         MyDataSource myDataSource = applicationContext.getBean("myDataSource", MyDataSource.class);
