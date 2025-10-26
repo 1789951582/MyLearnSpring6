@@ -1,12 +1,24 @@
 package com.powernode.spring6.test;
 
 import com.powernode.spring6.bean.*;
+import com.powernode.spring6.bean3.MyDataSource;
+import com.powernode.spring6.bean3.Product;
 import com.powernode.spring6.dao.OrderDao;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class IoCAnnotationTest {
+
+    @Test
+    public void testDIByAnnotation(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-di-annotation.xml");
+        MyDataSource myDataSource = applicationContext.getBean("myDataSource", MyDataSource.class);
+        System.out.println(myDataSource);
+
+        Product product = applicationContext.getBean("product", Product.class);
+        System.out.println(product);
+    }
 
     @Test
     public void testChoose(){
