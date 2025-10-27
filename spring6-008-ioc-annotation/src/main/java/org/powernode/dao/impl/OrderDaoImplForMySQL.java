@@ -3,7 +3,7 @@ package org.powernode.dao.impl;
 import org.powernode.dao.OrderDao;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public class OrderDaoImplForMySQL implements OrderDao {
     @Override
     public void insert() {
