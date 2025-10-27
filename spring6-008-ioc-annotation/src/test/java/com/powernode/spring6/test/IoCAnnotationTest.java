@@ -1,5 +1,6 @@
 package com.powernode.spring6.test;
 
+import cn.powernode.service.StudentService;
 import com.powernode.spring6.bean.*;
 import com.powernode.spring6.bean3.MyDataSource;
 import com.powernode.spring6.bean3.Product;
@@ -9,6 +10,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class IoCAnnotationTest {
+
+    @Test
+    public void testResource(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-resource.xml");
+        StudentService studentService = applicationContext.getBean("studentService", StudentService.class);
+        studentService.deleteStudent();
+    }
 
     @Test
     public void testAutowired(){
