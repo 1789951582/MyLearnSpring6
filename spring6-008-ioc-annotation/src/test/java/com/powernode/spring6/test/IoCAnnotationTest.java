@@ -1,5 +1,6 @@
 package com.powernode.spring6.test;
 
+import cn.powernode.Spring6Config;
 import cn.powernode.service.StudentService;
 import com.powernode.spring6.bean.*;
 import com.powernode.spring6.bean3.MyDataSource;
@@ -7,9 +8,17 @@ import com.powernode.spring6.bean3.Product;
 import com.powernode.spring6.dao.OrderDao;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class IoCAnnotationTest {
+
+    @Test
+    public void testNoXML(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Spring6Config.class);
+        StudentService studentService = context.getBean("studentService", StudentService.class);
+        studentService.deleteStudent();
+    }
 
     @Test
     public void testResource(){
