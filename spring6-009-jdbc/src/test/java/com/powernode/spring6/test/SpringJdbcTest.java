@@ -8,6 +8,26 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class SpringJdbcTest {
 
     @Test
+    public void testDelete(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+        String sql = "delete from t_user where id = ?";
+        int count = jdbcTemplate.update(sql, 1);
+        System.out.println(count);
+    }
+
+    @Test
+    public void testUpdate(){
+        // 根据id来修改某一条记录
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+        String sql = "update t_user set real_name = ? , age = ? where id = ?";
+        int count = jdbcTemplate.update(sql, "张三丰", 55, 1);
+        System.out.println(count);
+
+    }
+
+    @Test
     public void testInsert(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
