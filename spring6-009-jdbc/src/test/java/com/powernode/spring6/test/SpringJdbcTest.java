@@ -12,6 +12,16 @@ import java.util.List;
 public class SpringJdbcTest {
 
     @Test
+    public void testQueryOneValue(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+        String sql = "select count() from t_user"; //返回总记录条数是一个整数数字。
+        Integer total = jdbcTemplate.queryForObject(sql, int.class);
+        System.out.println("总记录条数" + total);
+
+    }
+
+    @Test
     public void testQueryAll(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
