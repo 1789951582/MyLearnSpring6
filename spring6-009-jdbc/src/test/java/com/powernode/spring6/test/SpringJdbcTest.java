@@ -12,6 +12,15 @@ import java.util.List;
 public class SpringJdbcTest {
 
     @Test
+    public void testQueryAll(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+        String sql = "select id,real_name,age from t_user";
+        List<User> query = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+        System.out.println(query);
+    }
+
+    @Test
     public void testQueryOne(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
