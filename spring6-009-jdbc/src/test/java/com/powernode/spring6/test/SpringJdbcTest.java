@@ -14,6 +14,27 @@ import java.util.List;
 public class SpringJdbcTest {
 
     @Test
+    public void testBatchUpdate(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+        String sql = "update t_user set real_name = ?, age = ? where id = ?";
+        //准备数据
+        Object[] objs1 = {"小明1", 20, 12};
+        Object[] objs2 = {"小明2", 21, 13};
+        Object[] objs3 = {"小明3", 22, 14};
+        Object[] objs4 = {"小明4", 23, 15};
+        //添加到List集合
+        List<Object[]> list = new ArrayList<>();
+        list.add(objs1);
+        list.add(objs2);
+        list.add(objs3);
+        list.add(objs4);
+        //执行SQL语句
+        int[] ints = jdbcTemplate.batchUpdate(sql, list);
+        String string = Arrays.toString(ints);
+    }
+
+    @Test
     public void testBatchInsert(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
