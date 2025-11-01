@@ -5,8 +5,16 @@
 
 <!--    配置自己写的数据源-->
 <!--    当然，也可以集成其他人或其他组织开发的数据源，例如c3p0 dbcp druid-->
-    <bean id="ds" class="com.powernode.spring6.bean.MyDataSource">
-        <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+<!--    <bean id="ds" class="com.powernode.spring6.bean.MyDataSource">-->
+<!--        <property name="driver" value="com.mysql.cj.jdbc.Driver" />-->
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/powernode" />-->
+<!--        <property name="username" value="root" />-->
+<!--        <property name="password" value="123qwe" />-->
+<!--    </bean>-->
+
+<!--    引入德鲁伊连接池-->
+    <bean id="ds" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/powernode" />
         <property name="username" value="root" />
         <property name="password" value="123qwe" />

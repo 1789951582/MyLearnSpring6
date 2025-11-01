@@ -24,13 +24,13 @@ public class SpringJdbcTest {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
         //准备SQL语句
-        String sql = "select id, real_name, age from t_user where id ?";
+        String sql = "select id, real_name, age from t_user where id = ?";
         //注册回调函数，当execute方法执行的时候，回调函数中的doInPreparedStatement()会被调用。
-        jdbcTemplate.execute(sql, new PreparedStatementCallback<User>() {
+        User execute = jdbcTemplate.execute(sql, new PreparedStatementCallback<User>() {
             @Override
             public User doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
                 User user = null;
-                ps.setInt(1,2);
+                ps.setInt(1, 2);
                 ResultSet resultSet = ps.executeQuery();
                 if (resultSet.next()) {
                     int id = resultSet.getInt("id");
@@ -41,6 +41,7 @@ public class SpringJdbcTest {
                 return user;
             }
         });
+        System.out.println(execute);
     }
 
     @Test
