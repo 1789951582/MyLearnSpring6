@@ -7,9 +7,35 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SpringJdbcTest {
+
+    @Test
+    public void testBatchInsert(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+        String sql = "insert into t_user(real_name, age) values(?,?)";
+
+        // 准备数据
+        Object[] objs1 = {"小花1", 30};
+        Object[] objs2 = {"小花2", 30};
+        Object[] objs3 = {"小花3", 30};
+        Object[] objs4 = {"小花4", 30};
+
+        // 添加到List集合
+        List<Object[]> list = new ArrayList<>();
+        list.add(objs1);
+        list.add(objs2);
+        list.add(objs3);
+        list.add(objs4);
+
+        // 执行SQL语句
+        int[] ints = jdbcTemplate.batchUpdate(sql, list);
+        System.out.println(Arrays.toString(ints));
+    }
 
     @Test
     public void testQueryOneValue(){
