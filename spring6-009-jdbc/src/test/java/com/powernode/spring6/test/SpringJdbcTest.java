@@ -14,6 +14,27 @@ import java.util.List;
 public class SpringJdbcTest {
 
     @Test
+    public void testBatchDelete(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+        String sql = "delete from t_user where id = ?";
+        //准备数据
+        Object[] objs1 = {12};
+        Object[] objs2 = {13};
+        Object[] objs3 = {14};
+        Object[] objs4 = {15};
+        //添加到List集合
+        ArrayList<Object[]> list = new ArrayList<>();
+        list.add(objs1);
+        list.add(objs2);
+        list.add(objs3);
+        list.add(objs4);
+        //执行SQL语句
+        int[] count = jdbcTemplate.batchUpdate(sql, list);
+        String string = Arrays.toString(count);
+    }
+
+    @Test
     public void testBatchUpdate(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
